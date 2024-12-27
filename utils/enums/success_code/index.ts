@@ -1,0 +1,5 @@
+export enum SuccessCode {
+  'GENERAL_SUCCESS' = 'GENERAL_SUCCESS',
+  'USER_LOGGED_IN' = 'USER_LOGGED_IN',
+  'USER_CREATED' = 'USER_CREATED',
+}
