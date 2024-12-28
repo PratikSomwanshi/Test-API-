@@ -4,6 +4,7 @@ import {
   Get,
   HttpCode,
   HttpStatus,
+  Logger,
   Post,
   Res,
 } from '@nestjs/common';
@@ -15,6 +16,8 @@ import { Response } from 'express';
 
 @Controller()
 export class AuthController {
+  private readonly logger = new Logger(AuthController.name);
+
   constructor(private readonly authService: AuthService) {}
 
   @Post('register')
@@ -27,6 +30,8 @@ export class AuthController {
       newUser,
       SuccessCode.USER_CREATED,
     );
+
+    this.logger.log(`User ${newUser.email} registered successfully`);
 
     return success;
   }
@@ -42,6 +47,8 @@ export class AuthController {
       jwtUser,
       SuccessCode.USER_LOGGED_IN,
     );
+
+    this.logger.debug(`User ${jwtUser.email} login successfully`);
 
     return success;
   }
